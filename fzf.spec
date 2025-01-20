@@ -35,6 +35,7 @@ go build
 
 %install
 export GOPATH=$(pwd)/.godeps:$(pwd)/gopath
+%make_install
 #install -d -m 0755 %{buildroot}%{_bindir} %{buildroot}%{_datadir}/%{name}
 #install -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
 #install -m 0644 config/style.css %{buildroot}%{_datadir}/%{name}/style.css
