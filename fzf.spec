@@ -39,7 +39,7 @@ export GOPATH=$(pwd)/.godeps:$(pwd)/gopath
 #install -d -m 0755 %{buildroot}%{_bindir} %{buildroot}%{_datadir}/%{name}
 #install -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
 #install -m 0644 config/style.css %{buildroot}%{_datadir}/%{name}/style.css
-install -Dpm0755 -t %{buildroot}%{_bindir} %{_bindir}/fzf %{_bindir}/fzf-tmux
+install -Dpm0755 -t %{buildroot}%{_bindir} bin/fzf bin/fzf-tmux
 install -Dpm0644 -t %{buildroot}%{_mandir}/man1 man/man1/*.1
 
 # Install vim plugin
