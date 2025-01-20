@@ -35,10 +35,25 @@ go build
 
 %install
 export GOPATH=$(pwd)/.godeps:$(pwd)/gopath
-%make_install
+
 #install -d -m 0755 %{buildroot}%{_bindir} %{buildroot}%{_datadir}/%{name}
 #install -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
 #install -m 0644 config/style.css %{buildroot}%{_datadir}/%{name}/style.css
+install -Dpm0755 -t %{buildroot}%{_bindir} %{gobuilddir}/bin/fzf bin/fzf-tmux
+install -Dpm0644 -t %{buildroot}%{_mandir}/man1 man/man1/*.1
+
+# Install vim plugin
+install -Dpm0644 -t %{buildroot}%{_datadir}/vim/vimfiles/plugin plugin/fzf.vim
+install -Dpm0644 -t %{buildroot}%{_datadir}/nvim/site/plugin plugin/fzf.vim
+
+# Install shell completion
+# fzf is special, bash completion must be in /etc/bash_completion.d
+# https://bugzilla.redhat.com/show_bug.cgi?id=1789958#c7
+install -Dpm0644 shell/completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/fzf
+install -Dpm0644 shell/completion.zsh %{buildroot}%{zsh_completions_dir}/_fzf
+
+# Install shell key bindings (not enabled)
+install -Dpm0644 -t %{buildroot}%{_datadir}/fzf/shell shell/key-bindings.*
 
 %files
 %license LICENSE
