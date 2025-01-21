@@ -31,7 +31,7 @@ Highlights
 %build
 export GOPATH=$(pwd)/.godeps:$(pwd)/gopath
 ## Note build takes around 10 minutes, so be patient as there is no output!
-go build
+go build -o bin/%name
 
 %install
 export GOPATH=$(pwd)/.godeps:$(pwd)/gopath
@@ -39,14 +39,14 @@ export GOPATH=$(pwd)/.godeps:$(pwd)/gopath
 #install -d -m 0755 %{buildroot}%{_bindir} %{buildroot}%{_datadir}/%{name}
 #install -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
 #install -m 0644 config/style.css %{buildroot}%{_datadir}/%{name}/style.css
-#install -Dpm0755 -t %{buildroot}%{_bindir} bin/fzf 
-#install -Dpm0755 -t %{buildroot}%{_bindir} bin/fzf-tmux
+install -Dpm0755 -t %{buildroot}%{_bindir} bin/fzf 
+install -Dpm0755 -t %{buildroot}%{_bindir} bin/fzf-tmux
 
 #install main binary
-install -Dpm0755 bin/%name %{buildroot}%{_bindir}/
+#install -Dpm0755 bin/%name %{buildroot}%{_bindir}/
 
 #install tmux support
-install -Dpm0755 bin/%name-tmux %{buildroot}%{_bindir}/
+#install -Dpm0755 bin/%name-tmux %{buildroot}%{_bindir}/
 
 install -Dpm0644 -t %{buildroot}%{_mandir}/man1 man/man1/*.1
 
@@ -65,3 +65,14 @@ install -Dpm0644 -t %{buildroot}%{_datadir}/fzf/shell shell/key-bindings.*
 
 %files
 %license LICENSE
+%{_bindir}/fzf
+%{_bindir}/fzf-tmux
+%{_mandir}/man1/fzf.1*
+%{_mandir}/man1/fzf-tmux.1*
+%{_datadir}/fzf
+%dir %{_datadir}/vim/vimfiles/plugin
+%{_datadir}/vim/vimfiles/plugin/fzf.vim
+%dir %{_datadir}/nvim/site/plugin
+%{_datadir}/nvim/site/plugin/fzf.vim
+%{_sysconfdir}/bash_completion.d/fzf
+#{zsh_completions_dir}/_fzf
