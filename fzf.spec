@@ -31,7 +31,7 @@ Highlights
 %build
 export GOPATH=$(pwd)/.godeps:$(pwd)/gopath
 ## Note build takes around 10 minutes, so be patient as there is no output!
-go build
+go build -o bin/%name
 
 %install
 export GOPATH=$(pwd)/.godeps:$(pwd)/gopath
