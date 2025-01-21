@@ -65,3 +65,14 @@ install -Dpm0644 -t %{buildroot}%{_datadir}/fzf/shell shell/key-bindings.*
 
 %files
 %license LICENSE
+%{_bindir}/fzf
+%{_bindir}/fzf-tmux
+%{_mandir}/man1/fzf.1*
+%{_mandir}/man1/fzf-tmux.1*
+%{_datadir}/fzf
+%dir %{_datadir}/vim/vimfiles/plugin
+%{_datadir}/vim/vimfiles/plugin/fzf.vim
+%dir %{_datadir}/nvim/site/plugin
+%{_datadir}/nvim/site/plugin/fzf.vim
+%{_sysconfdir}/bash_completion.d/fzf
+#{zsh_completions_dir}/_fzf
